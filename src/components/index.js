@@ -4,5 +4,6 @@ import QuizBackground from "./QuizBackground";
 import QuizLogo from "./QuizLogo";
 import Widget from "./Widget";
 import Head from "./Head";
+import Page from "./Page";
 
-export { Footer, GitHubCorner, QuizBackground, QuizLogo, Widget, Head };
+export { Footer, GitHubCorner, QuizBackground, QuizLogo, Widget, Head, Page };
