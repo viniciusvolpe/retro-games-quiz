@@ -1,6 +1,7 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import db from "../db.json";
-import { Head } from "../src/components";
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
+import db from '../db.json';
+import { Head } from '../src/components';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = db.theme;
+const { theme } = db;
 
 export default function App({ Component, pageProps }) {
   return (
@@ -34,3 +35,8 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+App.propTypes = {
+  Component: PropTypes.node.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};
