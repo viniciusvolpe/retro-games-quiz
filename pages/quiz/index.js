@@ -1,5 +1,5 @@
-import db from "../db.json";
-import { Page, Widget } from "../src/components";
+import db from "../../db.json";
+import { Page, Widget } from "../../src/components";
 
 const Quiz = () => {
   return (
