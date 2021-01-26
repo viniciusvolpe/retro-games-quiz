@@ -1,7 +1,19 @@
+import { useRouter } from 'next/router';
 import db from '../db.json';
-import { Page, Widget } from '../src/components';
+import { InitialForm, Page, Widget } from '../src/components';
 
 export default function Home() {
+  const router = useRouter();
+
+  function handleSubmit({ name }) {
+    router.push({
+      pathname: 'quiz',
+      query: {
+        name,
+      },
+    });
+  }
+
   return (
     <Page background={db.bg} projectUrl={db.projectUrl}>
       <Widget>
@@ -9,7 +21,7 @@ export default function Home() {
           <h1>{db.title}</h1>
         </Widget.Header>
         <Widget.Content>
-          <p>{db.description}</p>
+          <InitialForm onSubmit={handleSubmit} />
         </Widget.Content>
       </Widget>
 
