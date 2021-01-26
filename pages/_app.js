@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     display: flex;
     flex-direction: column;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Amiga Forever', sans-serif;
     color: ${({ theme }) => theme.colors.contrastText};
   }
   html, body {
