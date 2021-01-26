@@ -1,6 +1,9 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { QuizBackground, QuizLogo, Footer, GitHubCorner } from "../";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import QuizBackground from '../QuizBackground';
+import QuizLogo from '../QuizLogo';
+import Footer from '../Footer';
+import GitHubCorner from '../GitHubCorner';
 
 const QuizContainer = styled.aside`
   width: 100%;
