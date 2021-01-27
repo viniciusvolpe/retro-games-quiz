@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import QuizBackground from '../QuizBackground';
@@ -16,7 +17,7 @@ const QuizContainer = styled.aside`
   }
 `;
 
-export default function Page({ children, background, projectUrl }) {
+function Page({ children, background, projectUrl }) {
   return (
     <QuizBackground backgroundImage={background}>
       <QuizContainer>
@@ -34,3 +35,5 @@ Page.propTypes = {
   background: PropTypes.string.isRequired,
   projectUrl: PropTypes.string.isRequired,
 };
+
+export default React.memo(Page);
