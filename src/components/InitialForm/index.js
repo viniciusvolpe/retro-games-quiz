@@ -23,7 +23,7 @@ function InitialForm({ onSubmit }) {
 
   return (
     <Form onSubmit={handleOnSubmit}>
-      <Input placeholder="Digite seu nome para jogar" onChange={handleInputChange} />
+      <Input placeholder="Digite seu nome" name="name" onChange={handleInputChange} />
       <Button type="submit" disabled={!name}>Jogar</Button>
     </Form>
   );

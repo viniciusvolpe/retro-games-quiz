@@ -5,20 +5,68 @@
   "projectUrl": "https://github.com/viniciusvolpe/retro-games-quiz",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "",
+      "title": "Qual era o nome antigo do Mario?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "answer": 3,
+      "alternatives": [
+        "Luigi", 
+        "Shigeru", 
+        "Sempre foi Mario", 
+        "Jumpman",
+        "Plumbman"
+      ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "",
+      "title": "Em que ano foi lançado o primeiro Mario Kart?",
+      "description": "O melhor jogo de corrida de todos os tempos",
+      "answer": 4,
+      "alternatives": [
+        "1991",
+        "1993",
+        "1995",
+        "1994",
+        "1992"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Em que game Tails aparece pela primeira vez?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sonic the Hedgehog",
+        "Sonic the Hedgehog 2",
+        "Sonic the Hedgehog 3",
+        "Sonic CD",
+        "Sonic Adventure"
+      ]
+    },
+    {
+      "image": "",
+      "title": "No Pacman, qual é o fantasma que sempre pega o caminho mais curto até você?",
+      "description": "",
       "answer": 0,
       "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
+        "Blinky (vermelho)",
+        "Inky (azul)",
+        "Pinky (rosa)",
+        "Clyde (laranja)",
+        "Vicky (Roxo)"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Em qual quadrinho o jogo Mega Man foi inspirado?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Super boy",
+        "Astro boy",
+        "Mega kid",
+        "Canon man",
+        "O diario de Man-chan"
       ]
     }
   ],

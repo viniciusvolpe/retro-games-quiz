@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const borderColor = ({ theme }) => theme.colors.secondary;
 
 const Input = styled.input`
+  font-size: 12px;
   background: none;
   border: none;
   border-bottom: 1px solid ${borderColor};
