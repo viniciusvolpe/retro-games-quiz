@@ -14,6 +14,9 @@ const Input = styled.input`
     border-bottom: 2px solid ${borderColor};
     padding: 5px;
   }
+  ::placeholder {
+    color: ${({ theme }) => `${theme.colors.secondary}60`}
+  }
 `;
 
 export default Input;

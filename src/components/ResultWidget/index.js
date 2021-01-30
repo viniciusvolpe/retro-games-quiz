@@ -1,6 +1,13 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Widget from '../Widget';
+
+const ResultContainer = styled.div`
+  p {
+    margin-top: 20px;
+  }
+`;
 
 export default function ResultWidget({ correctAnswers, points, total }) {
   const { query: { name } } = useRouter();
@@ -16,10 +23,12 @@ export default function ResultWidget({ correctAnswers, points, total }) {
         Resultado
       </Widget.Header>
       <Widget.Content>
-        <small>{getPlayerMessage()}</small>
-        <p>
-          {`Total de pontos: ${points}`}
-        </p>
+        <ResultContainer>
+          <small>{getPlayerMessage()}</small>
+          <p>
+            {`Total de pontos: ${points}`}
+          </p>
+        </ResultContainer>
       </Widget.Content>
     </Widget>
   );

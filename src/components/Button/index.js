@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
-  width: 100%;
-  padding: 10px 20px;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
   margin-top: 10px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.contrastText};

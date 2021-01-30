@@ -11,6 +11,7 @@ import Button from './Button';
 import LoadingWidget from './LoadingWidget';
 import ResultWidget from './ResultWidget';
 import QuestionWidget from './QuestionWidget';
+import ExternalQuizWidget from './ExternalQuizWidget';
 
 export {
   Footer,
@@ -26,4 +27,5 @@ export {
   LoadingWidget,
   ResultWidget,
   QuestionWidget,
+  ExternalQuizWidget,
 };
