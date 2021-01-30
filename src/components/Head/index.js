@@ -8,7 +8,7 @@ const SiteHeade = () => (
     <meta property="og:title" content={db.title} />
     <meta property="og:image" content={db.bg} />
     <link
-      href="http://fonts.cdnfonts.com/css/amiga-forever"
+      href="https://fonts.cdnfonts.com/css/amiga-forever"
       rel="stylesheet"
     />
   </Head>

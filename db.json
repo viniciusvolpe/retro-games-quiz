@@ -1,5 +1,5 @@
 {
-  "bg": "https://www.itl.cat/pngfile/big/11-117908_retro-gaming-wallpaper-90s-arcade.jpg",
+  "bg": "https://i.ibb.co/ry3ZZJJ/retro-games-background.jpg",
   "title": "Quiz CSS da Alura",
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
   "projectUrl": "https://github.com/viniciusvolpe/retro-games-quiz",
@@ -73,10 +73,10 @@
   "external": [""],
   "theme": {
     "colors": {
-      "primary": "#FFAC81",
-      "secondary": "#FF928B",
-      "mainBg": "#F2D0A9",
-      "contrastText": "#000000",
+      "primary": "#009FB7",
+      "secondary": "#FED766",
+      "mainBg": "#61707D",
+      "contrastText": "#ffffff",
       "error": "#FF5722",
       "success": "#4CAF50"
     },
