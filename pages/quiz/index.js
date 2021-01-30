@@ -62,21 +62,21 @@ const Message = styled.div`
   font-size: 10px;
   width: 100%;
   text-align: center;
-  color: ${({ theme, correct }) => theme.colors[correct ? 'success' : 'error']}
+  color: ${({ theme, correct }) => theme.colors[correct ? 'success' : 'error']};
 `;
 
 const Form = styled.form`
   label {
     background-color: ${({ theme }) => `${theme.colors.primary}60`};
     &[selected="true"] {
-      background-color: ${({ theme }) => theme.colors.primary}
+      background-color: ${({ theme }) => theme.colors.primary};
     };
     &[confirmed="true"] {
       &[correct="true"] {
-        background-color: ${({ theme }) => theme.colors.success}
+        background-color: ${({ theme }) => theme.colors.success};
       };
       &[correct="false"] {
-        background-color: ${({ theme }) => theme.colors.error}
+        background-color: ${({ theme }) => theme.colors.error};
       };
     };
   };
