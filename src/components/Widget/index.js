@@ -5,7 +5,6 @@ const Widget = styled.section`
   margin-bottom: 24px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.mainBg};
-  border-radius: 4px;
   overflow: hidden;
   h1,
   h2,
@@ -51,7 +50,7 @@ Widget.Content = styled.article`
 function topicBackgroundColor({
   theme, selected, confirmed, correct,
 }) {
-  if (!selected) return `${theme.colors.primary}40`;
+  if (!selected) return `${theme.colors.primary}60`;
   if (!confirmed) return theme.colors.primary;
   if (correct) return theme.colors.success;
   return theme.colors.error;
@@ -71,7 +70,7 @@ Widget.Topic = styled.a`
   
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: ${({ selected }) => !selected && '.8'};
   }
 `;
 

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import db from '../../db.json';
 import { Button, Page, Widget } from '../../src/components';
@@ -17,9 +18,39 @@ function LoadingWidget() {
   );
 }
 
+function ResultWidget({ correctAnswers, points, total }) {
+  const { query: { name } } = useRouter();
+  function getPlayerMessage() {
+    const percentage = Math.ceil(correctAnswers / total);
+    if (percentage > 0.8) { return `Mandou bem ${name}!`; }
+    if (percentage > 0.5) { return `Quase lá ${name}`; }
+    return `Não foi desta vez ${name}!`;
+  }
+  return (
+    <Widget>
+      <Widget.Header>
+        Resultado
+      </Widget.Header>
+      <Widget.Content>
+        <small>{getPlayerMessage()}</small>
+        <p>
+          {`Total de pontos: ${points}`}
+        </p>
+      </Widget.Content>
+    </Widget>
+  );
+}
+
+ResultWidget.propTypes = {
+  correctAnswers: PropTypes.number.isRequired,
+  points: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+};
+
 const Image = styled.img`
   width: 100%;
   height: 150px;
+  object-fit: cover;
 `;
 
 const QuestionTitle = styled.h4`
@@ -31,7 +62,24 @@ const Message = styled.div`
   font-size: 10px;
   width: 100%;
   text-align: center;
-  color: ${({ theme, correct }) => (correct ? theme.colors.success : theme.colors.error)};
+  color: ${({ theme, correct }) => theme.colors[correct ? 'success' : 'error']}
+`;
+
+const Form = styled.form`
+  label {
+    background-color: ${({ theme }) => `${theme.colors.primary}60`};
+    &[selected="true"] {
+      background-color: ${({ theme }) => theme.colors.primary}
+    };
+    &[confirmed="true"] {
+      &[correct="true"] {
+        background-color: ${({ theme }) => theme.colors.success}
+      };
+      &[correct="false"] {
+        background-color: ${({ theme }) => theme.colors.error}
+      };
+    };
+  };
 `;
 
 function QuestionWidget({
@@ -45,7 +93,7 @@ function QuestionWidget({
   function handleSubmit(event) {
     event.preventDefault();
     if (confirmed) {
-      onSubmit();
+      onSubmit(isCorrect);
       setAnswer(null);
       setConfirmed(false);
     } else {
@@ -97,7 +145,7 @@ function QuestionWidget({
         alt="Imagem da questao"
       />
       <Widget.Content>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <QuestionTitle>{question.title}</QuestionTitle>
           <p>{question.description}</p>
           {question.alternatives.map(mapAlternatives)}
@@ -105,7 +153,7 @@ function QuestionWidget({
           <Button type="submit">
             {getButtonLabel()}
           </Button>
-        </form>
+        </Form>
       </Widget.Content>
     </Widget>
   );
@@ -127,6 +175,7 @@ const PAGE_STATES = {
 function Quiz() {
   const [pageState, setPageState] = useState(PAGE_STATES.LOADING);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [results, setResults] = useState([]);
   const total = db.questions.length;
   const question = db.questions[currentQuestion];
 
@@ -134,13 +183,24 @@ function Quiz() {
     setTimeout(() => setPageState(PAGE_STATES.QUIZ), 1 * 1000);
   }, []);
 
-  function handleSubmit() {
+  function handleSubmit(isCorrect) {
+    setResults([...results, isCorrect]);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < total) {
       setCurrentQuestion(nextQuestion);
     } else {
       setPageState(PAGE_STATES.RESULT);
     }
+  }
+
+  function getResults() {
+    const correctAnswers = results.filter((result) => result).length;
+    const points = correctAnswers * 20;
+    return {
+      correctAnswers,
+      points,
+      total,
+    };
   }
 
   return (
@@ -152,6 +212,11 @@ function Quiz() {
           index={currentQuestion}
           total={total}
           onSubmit={handleSubmit}
+        />
+      )}
+      {pageState === PAGE_STATES.RESULT && (
+        <ResultWidget
+          {...getResults()}
         />
       )}
     </Page>
