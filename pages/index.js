@@ -63,7 +63,7 @@ Home.propTypes = {
   repositories: PropTypes.array.isRequired,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const response = await fetch('https://api.github.com/search/repositories?q=topic:aluraquiz').then((r) => r.json());
     const randomIndex = Math.floor(Math.random() * Math.floor(response.items.length - 3));
