@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import QuizBackground from '../QuizBackground';
 import QuizLogo from '../QuizLogo';
 import Footer from '../Footer';
@@ -23,7 +24,16 @@ function Page({ children, background, projectUrl }) {
       <QuizContainer>
         <QuizLogo />
         {children}
-        <Footer />
+        <Footer
+          as={motion.section}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0 },
+          }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          initial="hidden"
+          animate="show"
+        />
       </QuizContainer>
       {projectUrl && <GitHubCorner projectUrl={projectUrl} />}
     </QuizBackground>

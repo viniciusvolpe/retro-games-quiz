@@ -1,14 +1,29 @@
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import db from '../db.json';
 import {
-  ExternalQuizWidget, InitialForm, Page, Widget,
+  Button,
+  ExternalQuizWidget, Input, Page, Widget,
 } from '../src/components';
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
 
 export default function Home({ repositories }) {
   const router = useRouter();
+  const [name, setName] = useState();
 
-  function handleSubmit({ name }) {
+  function handleInputChange(event) {
+    setName(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
     router.push({
       pathname: 'quiz',
       query: {
@@ -19,15 +34,27 @@ export default function Home({ repositories }) {
 
   return (
     <Page background={db.bg} projectUrl={db.projectUrl}>
-      <Widget>
+      <Widget
+        as={motion.section}
+        variants={{
+          show: { opacity: 1, y: '0' },
+          hidden: { opacity: 0, y: '100%' },
+        }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        initial="hidden"
+        animate="show"
+      >
         <Widget.Header>
           <h1>{db.title}</h1>
         </Widget.Header>
         <Widget.Content>
-          <InitialForm onSubmit={handleSubmit} />
+          <Form onSubmit={handleSubmit}>
+            <Input placeholder="Digite seu nome" name="name" autoComplete="off" onChange={handleInputChange} />
+            <Button type="submit" disabled={!name}>Jogar</Button>
+          </Form>
         </Widget.Content>
       </Widget>
-      <ExternalQuizWidget repositories={repositories} />
+      <ExternalQuizWidget repositories={repositories} disabled={!name} />
     </Page>
   );
 }

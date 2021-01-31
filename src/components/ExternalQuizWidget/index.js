@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '../Button';
@@ -19,16 +20,25 @@ const Title = styled.h4`
     margin-bottom: 10px;
 `;
 
-export default function ExternalQuizWidget({ repositories }) {
+export default function ExternalQuizWidget({ repositories, disabled }) {
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      variants={{
+        show: { opacity: 1 },
+        hidden: { opacity: 0 },
+      }}
+      transition={{ delay: 0.5, duration: 0.5 }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Content>
         <Title>Quizes da Galera</Title>
         <Subtitle>
           Da uma olhada nesses quizes incríveis que o pessoal da Imersão React fez!
         </Subtitle>
         {repositories.map(({ repoName, user, url }) => (
-          <Button as="a" href={`/quiz/${user}__${repoName}?url=${url}`} key={url}>
+          <Button disabled={disabled} as="a" href={`/quiz/${user}__${repoName}?url=${url}`} key={url}>
             <RepoName>{repoName}</RepoName>
             <UserName>{user}</UserName>
           </Button>
@@ -40,4 +50,9 @@ export default function ExternalQuizWidget({ repositories }) {
 
 ExternalQuizWidget.propTypes = {
   repositories: PropTypes.array.isRequired,
+  disabled: PropTypes.bool,
+};
+
+ExternalQuizWidget.defaultProps = {
+  disabled: false,
 };

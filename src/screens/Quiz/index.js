@@ -12,14 +12,14 @@ const PAGE_STATES = {
 };
 
 function Quiz({ db }) {
-  const [pageState, setPageState] = useState(PAGE_STATES.LOADING);
+  const [pageState, setPageState] = useState(PAGE_STATES.QUIZ);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [results, setResults] = useState([]);
   const total = db.questions.length;
   const question = db.questions[currentQuestion];
 
   useEffect(() => {
-    setTimeout(() => setPageState(PAGE_STATES.QUIZ), 1 * 1000);
+    // setTimeout(() => setPageState(PAGE_STATES.QUIZ), 1 * 1000);
   }, []);
 
   function handleSubmit(isCorrect) {

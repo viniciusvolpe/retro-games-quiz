@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { motion, useAnimation } from 'framer-motion';
 import Button from '../Button';
 import Widget from '../Widget';
 import BackLinkArrow from '../BackLinkArrow';
@@ -47,10 +48,16 @@ export default function QuestionWidget({
   const [confirmed, setConfirmed] = useState(false);
   const title = `Pergunta ${index + 1} de ${total}`;
   const isCorrect = answer === question.answer;
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ opacity: 1, x: 0 });
+  }, [index]);
 
   function handleSubmit(event) {
     event.preventDefault();
     if (confirmed) {
+      controls.set({ opacity: 0, x: -1000 });
       onSubmit(isCorrect);
       setAnswer(null);
       setConfirmed(false);
@@ -74,12 +81,16 @@ export default function QuestionWidget({
     const alternativeId = `alternative__${alternativeIndex}`;
     return (
       <Widget.Topic
-        htmlFor={alternativeId}
         key={alternativeId}
+        htmlFor={alternativeId}
         onClick={() => handleClick(alternativeIndex)}
         selected={answer === alternativeIndex}
         confirmed={confirmed}
         correct={isCorrect}
+        as={motion.a}
+        animate={controls}
+        transition={{ delay: alternativeIndex * 0.1, duration: 0.5 }}
+        initial={{ opacity: 0, x: '-100%' }}
       >
         {alternative}
       </Widget.Topic>
