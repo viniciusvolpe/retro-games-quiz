@@ -42,6 +42,7 @@ export async function getStaticProps() {
     const randomIndex = Math.floor(Math.random() * Math.floor(response.items.length - 3));
     const repositories = response
       .items
+      .filter((repository) => !!repository.homepage)
       .splice(randomIndex, 3)
       .map((repository) => {
         const [user, repoName] = repository.html_url.replace('https://github.com/', '').split('/');

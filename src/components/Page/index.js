@@ -25,15 +25,20 @@ function Page({ children, background, projectUrl }) {
         {children}
         <Footer />
       </QuizContainer>
-      <GitHubCorner projectUrl={projectUrl} />
+      {projectUrl && <GitHubCorner projectUrl={projectUrl} />}
     </QuizBackground>
   );
 }
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
-  background: PropTypes.string.isRequired,
-  projectUrl: PropTypes.string.isRequired,
+  background: PropTypes.string,
+  projectUrl: PropTypes.string,
+};
+
+Page.defaultProps = {
+  background: null,
+  projectUrl: null,
 };
 
 export default React.memo(Page);

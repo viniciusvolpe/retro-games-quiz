@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '../Button';
 import Widget from '../Widget';
+import BackLinkArrow from '../BackLinkArrow';
 
 const Image = styled.img`
   width: 100%;
@@ -93,6 +94,7 @@ export default function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h2>
           {title}
         </h2>

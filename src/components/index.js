@@ -12,6 +12,8 @@ import LoadingWidget from './LoadingWidget';
 import ResultWidget from './ResultWidget';
 import QuestionWidget from './QuestionWidget';
 import ExternalQuizWidget from './ExternalQuizWidget';
+import Link from './Link';
+import BackLinkArrow from './BackLinkArrow';
 
 export {
   Footer,
@@ -28,4 +30,6 @@ export {
   ResultWidget,
   QuestionWidget,
   ExternalQuizWidget,
+  Link,
+  BackLinkArrow,
 };

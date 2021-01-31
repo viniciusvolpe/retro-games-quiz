@@ -80,6 +80,6 @@
       "error": "#FF5722",
       "success": "#4CAF50"
     },
-    "borderRadius": "4px"
+    "borderRadius": "0"
   }
 }

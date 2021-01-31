@@ -7,6 +7,10 @@ const UserName = styled.small`
     font-size: xx-small;
 `;
 
+const Subtitle = styled.small`
+  margin-bottom: 10px;
+`;
+
 const RepoName = styled.strong`
     display: block;
 `;
@@ -20,8 +24,11 @@ export default function ExternalQuizWidget({ repositories }) {
     <Widget>
       <Widget.Content>
         <Title>Quizes da Galera</Title>
+        <Subtitle>
+          Da uma olhada nesses quizes incríveis que o pessoal da Imersão React fez!
+        </Subtitle>
         {repositories.map(({ repoName, user, url }) => (
-          <Button as="a" href={`/quiz/${user}__${repoName}?name=`} hey={url}>
+          <Button as="a" href={`/quiz/${user}__${repoName}?url=${url}`} key={url}>
             <RepoName>{repoName}</RepoName>
             <UserName>{user}</UserName>
           </Button>

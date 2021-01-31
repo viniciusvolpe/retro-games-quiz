@@ -13,8 +13,9 @@ export default function ResultWidget({ correctAnswers, points, total }) {
   const { query: { name } } = useRouter();
   function getPlayerMessage() {
     const percentage = Math.ceil(correctAnswers / total);
-    if (percentage > 0.8) { return `Mandou bem ${name}!`; }
-    if (percentage > 0.5) { return `Quase lá ${name}`; }
+    const playerName = name ?? '';
+    if (percentage > 0.8) { return `Mandou bem ${playerName}!`; }
+    if (percentage > 0.5) { return `Quase lá ${playerName}`; }
     return `Não foi desta vez ${name}!`;
   }
   return (
