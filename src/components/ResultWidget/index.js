@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '../Button';
-import Link from '../Link';
 import Widget from '../Widget';
 
 const ResultContainer = styled.div`

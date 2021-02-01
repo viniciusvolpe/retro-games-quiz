@@ -13,6 +13,7 @@ import QuestionWidget from './QuestionWidget';
 import ExternalQuizWidget from './ExternalQuizWidget';
 import Link from './Link';
 import BackLinkArrow from './BackLinkArrow';
+import Spinner from './Spinner';
 
 export {
   Footer,
@@ -30,4 +31,5 @@ export {
   ExternalQuizWidget,
   Link,
   BackLinkArrow,
+  Spinner,
 };

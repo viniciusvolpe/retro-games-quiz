@@ -1,4 +1,12 @@
+import styled from 'styled-components';
 import Widget from '../Widget';
+import Spinner from '../Spinner';
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  display: grid;
+  place-content: center;
+`;
 
 export default function LoadingWidget() {
   return (
@@ -7,7 +15,9 @@ export default function LoadingWidget() {
         Carregando...
       </Widget.Header>
       <Widget.Content>
-        [Loading]
+        <LoadingContainer>
+          <Spinner size={150} />
+        </LoadingContainer>
       </Widget.Content>
     </Widget>
   );
