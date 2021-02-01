@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import LoadingWidget from '../../components/LoadingWidget';
 import Page from '../../components/Page';
 import QuestionWidget from '../../components/QuestionWidget';
@@ -11,16 +12,34 @@ const PAGE_STATES = {
   RESULT: 'RESULT',
 };
 
-function Quiz({ db }) {
-  const [pageState, setPageState] = useState(PAGE_STATES.QUIZ);
+function Quiz({ db, rank }) {
+  const { query: { name } } = useRouter();
+  const [pageState, setPageState] = useState(PAGE_STATES.LOADING);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [results, setResults] = useState([]);
+  const [playerScore, setPlayerScore] = useState({});
   const total = db.questions.length;
   const question = db.questions[currentQuestion];
 
   useEffect(() => {
-    // setTimeout(() => setPageState(PAGE_STATES.QUIZ), 1 * 1000);
+    setTimeout(() => setPageState(PAGE_STATES.QUIZ), 1 * 1000);
   }, []);
+
+  async function calculateAndSaveScore() {
+    const correctAnswers = results.filter((result) => result).length;
+    const score = correctAnswers * 20;
+    const calculatedScore = {
+      correctAnswers,
+      score,
+      total,
+    };
+    await fetch('/api/rank', {
+      method: 'POST',
+      body: JSON.stringify({ name, score }),
+    });
+    setPlayerScore(calculatedScore);
+    setPageState(PAGE_STATES.RESULT);
+  }
 
   function handleSubmit(isCorrect) {
     setResults([...results, isCorrect]);
@@ -28,18 +47,8 @@ function Quiz({ db }) {
     if (nextQuestion < total) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setPageState(PAGE_STATES.RESULT);
+      calculateAndSaveScore();
     }
-  }
-
-  function getResults() {
-    const correctAnswers = results.filter((result) => result).length;
-    const points = correctAnswers * 20;
-    return {
-      correctAnswers,
-      points,
-      total,
-    };
   }
 
   return (
@@ -55,7 +64,9 @@ function Quiz({ db }) {
       )}
       {pageState === PAGE_STATES.RESULT && (
         <ResultWidget
-          {...getResults()}
+          name={name}
+          rank={rank}
+          {...playerScore}
         />
       )}
     </Page>
@@ -64,6 +75,11 @@ function Quiz({ db }) {
 
 Quiz.propTypes = {
   db: PropTypes.object.isRequired,
+  rank: PropTypes.array,
+};
+
+Quiz.defaultProps = {
+  rank: [],
 };
 
 export default Quiz;
